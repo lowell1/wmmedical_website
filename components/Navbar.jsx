@@ -4,10 +4,15 @@ import Link from "next/link";
 export default function Navbar() {
     return (
         <Menu stackable>
-            <Menu.Item><Link href="/"><Icon link name="home"/></Link></Menu.Item>
-            <Menu.Item><Link href="/">products</Link></Menu.Item>
-            <Menu.Item><Link href="/">about</Link></Menu.Item>
-            <Menu.Item><Link href="/Contact">contact us</Link></Menu.Item>
+            <Link href="/">
+                <Menu.Item>
+                    <Icon link name="home"/>
+                    <i className="hidden">home</i>
+                </Menu.Item>
+            </Link>
+            <Link href="/"><Menu.Item>products</Menu.Item></Link>
+            <Link href="/"><Menu.Item>about</Menu.Item></Link>
+            <Link href="/Contact"><Menu.Item>contact</Menu.Item></Link>
         </Menu>
     );
 }
