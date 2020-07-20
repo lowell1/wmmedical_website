@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 import "../styles/global.css";
 import {Container} from "semantic-ui-react";
 
