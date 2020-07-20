@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import "../styles/global.css";
+import {Container} from "semantic-ui-react";
 
 export default function MyApp({ Component, pageProps }) {
     return (
@@ -11,7 +12,11 @@ export default function MyApp({ Component, pageProps }) {
             <header>
                 <Navbar/>
             </header>
-            <main><Component {...pageProps} /></main>
+            <main>
+                <Container>
+                    <Component {...pageProps} />
+                </Container>
+            </main>
         </div>
     );
 }

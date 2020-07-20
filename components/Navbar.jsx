@@ -1,9 +1,11 @@
 import {Menu, Icon, Dropdown} from "semantic-ui-react";
 import Link from "next/link";
 
+const styles = {marginBottom: "2vh"};
+
 export default function Navbar() {
     return (
-        <Menu stackable>
+        <Menu stackable style={styles}>
             <Link href="/">
                 <Menu.Item>
                     <Icon link name="home"/>
