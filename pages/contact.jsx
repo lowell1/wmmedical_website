@@ -1,7 +1,7 @@
-import {Form, Input, Button, Radio, TextArea} from "semantic-ui-react";
-import {useState} from "react";
+import {Form, Input, Button, TextArea, Message} from "semantic-ui-react";
 import {withFormik} from "formik";
 import * as yup from "yup";
+import axios from "axios";
 
 const styles = {
     maxWidth: "800px",
@@ -16,14 +16,14 @@ function ContactForm(props) {
         handleChange,
         handleBlur,
         handleSubmit,
-        setValues
+        setValues,
+        isSubmitting,
+        status
     } = props;
-
 
     // add the current time in milliseconds that they started filling out the form to values object
     function setStartTime() {
         setValues({...values, startTime: new Date().getTime()}, false);
-        console.log("values =",values);
     }
 
     return (
@@ -64,7 +64,8 @@ function ContactForm(props) {
                 onBlur={handleBlur}
                 error={touched.message && errors.message}
             />
-            <Button type="submit">Submit</Button>
+            {status !== undefined && <Message content={status}/>}
+            {isSubmitting ? <Button loading>submitting</Button> : <Button type="submit">Submit</Button>}
         </Form>
     );
 }
@@ -75,8 +76,6 @@ const yupSchema = yup.object().shape({
     message: yup.string().required()
 });
 
-//setStatus: https://formik.org/docs/api/formik#setstatus-status-any--void
-
 export default withFormik({
     mapPropsToValues: () => ({
         name: "",
@@ -85,15 +84,22 @@ export default withFormik({
         startTime: null
     }),
     validationSchema: yupSchema,
-    handleSubmit: (values, { setSubmitting }) => {
-        // a human should take at least 2 seconds to fill out the form
+    handleSubmit: (values, { setSubmitting, setStatus }) => {
+        // some crude anti-spam
         if(new Date().getTime() - values.startTime < 2000) 
             return;
 
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 1000);
+        axios.post("/api/send_mail", values)
+            .then(res => {
+                setStatus(res.status === 200 
+                    ? "Message received." 
+                    : `Message could not be sent: status ${res.status}`);
+                setSubmitting(false);
+            })
+            .catch(err => {
+                setStatus("Message could not be sent");
+                setSubmitting(false);
+            });
     },    
     displayName: 'BasicForm'
 })(ContactForm);

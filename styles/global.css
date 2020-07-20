@@ -1,3 +1,4 @@
+/* hides element but not to screen readers */
 .hidden {
     position: absolute;
     clip: rect(0,0,0,0);
