@@ -13,9 +13,7 @@ export default function MyApp({ Component, pageProps }) {
                 <Navbar/>
             </header>
             <main>
-                <Container>
-                    <Component {...pageProps} />
-                </Container>
+                <Component {...pageProps} />
             </main>
         </div>
     );

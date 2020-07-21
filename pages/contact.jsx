@@ -1,4 +1,4 @@
-import {Form, Input, Button, TextArea, Message} from "semantic-ui-react";
+import {Form, Input, Button, TextArea, Message, Container} from "semantic-ui-react";
 import {withFormik} from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -27,46 +27,48 @@ function ContactForm(props) {
     }
 
     return (
-        <Form onSubmit={handleSubmit} style={styles}>
-            <Form.Group widths="equal">
+        <Container style={styles}>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group widths="equal">
+                    <Form.Field
+                        required
+                        id="form-control-name"
+                        control={Input}
+                        label="First name"
+                        name="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={touched.name && errors.name}
+                        onFocus={setStartTime}
+                    />
+                    <Form.Field
+                        required
+                        id="form-control-email"
+                        control={Input}
+                        label="Email"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={touched.email && errors.email}
+                    />                
+                </Form.Group>
                 <Form.Field
                     required
-                    id="form-control-name"
-                    control={Input}
-                    label="First name"
-                    name="name"
-                    value={values.name}
+                    id="form-control-message"
+                    label="Enter a message"
+                    control={TextArea}
+                    name="message"
+                    value={values.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    error={touched.name && errors.name}
-                    onFocus={setStartTime}
+                    error={touched.message && errors.message}
                 />
-                <Form.Field
-                    required
-                    id="form-control-email"
-                    control={Input}
-                    label="Email"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.email && errors.email}
-                />                
-            </Form.Group>
-            <Form.Field
-                required
-                id="form-control-message"
-                label="Enter a message"
-                control={TextArea}
-                name="message"
-                value={values.message}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.message && errors.message}
-            />
-            {status !== undefined && <Message content={status}/>}
-            {isSubmitting ? <Button loading>submitting</Button> : <Button type="submit">Submit</Button>}
-        </Form>
+                {status !== undefined && <Message content={status}/>}
+                {isSubmitting ? <Button loading>submitting</Button> : <Button type="submit">Submit</Button>}
+            </Form>
+        </Container>
     );
 }
 

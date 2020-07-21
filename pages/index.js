@@ -1,7 +1,9 @@
+import {Container} from "semantic-ui-react";
+
 export default function Home() {
   return (
-    <div>
+    <Container>
       Home page
-    </div>
+    </Container>
   );
 }
