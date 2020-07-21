@@ -90,14 +90,18 @@ export default withFormik({
             return;
 
         axios.post("/api/send_mail", values)
-            .then(res => {
-                setStatus(res.status === 200 
-                    ? "Message received." 
-                    : `Message could not be sent: status ${res.status}`);
+            .then(response => {
+                if(response.status === 200) {
+                    setStatus("Message received.");
+                } else {
+                    setStatus("Message could not be sent.");
+                    console.log(response.data)
+                }
                 setSubmitting(false);
             })
-            .catch(err => {
-                setStatus("Message could not be sent");
+            .catch(error => {
+                console.log(error);
+                setStatus("Message could not be sent.");
                 setSubmitting(false);
             });
     },    

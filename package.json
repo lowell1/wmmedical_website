@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "formik": "^2.1.5",
     "next": "9.4.4",
+    "nodemailer": "^6.4.10",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "semantic-ui-react": "^0.88.2",
