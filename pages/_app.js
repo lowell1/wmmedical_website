@@ -1,7 +1,6 @@
 import Head from "next/head";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 import "../styles/global.css";
-import {Container} from "semantic-ui-react";
 
 export default function MyApp({ Component, pageProps }) {
     return (

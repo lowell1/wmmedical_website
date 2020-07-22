@@ -14,13 +14,13 @@ export default function Navbar() {
             </Link>
             <Dropdown text='Products' className="item">
                 <Dropdown.Menu>
-                    <Link href="/products/pump"><Dropdown.Item text='pumps'/></Link>
-                    <Link href="/products/dressing_kit"><Dropdown.Item text='wound dressings'/></Link>
-                    <Link href="/products/canister"><Dropdown.Item text='canisters'/></Link>
+                    <Link href="/products/Pump"><Dropdown.Item text='Pumps'/></Link>
+                    <Link href="/products/DressingKit"><Dropdown.Item text='Wound dressings'/></Link>
+                    <Link href="/products/Canister"><Dropdown.Item text='Canisters'/></Link>
                 </Dropdown.Menu>
             </Dropdown>
-            <Link href="/"><Menu.Item>About</Menu.Item></Link>
-            <Link href="/contact"><Menu.Item>Contact</Menu.Item></Link>
+            <Link href="/About"><Menu.Item>About</Menu.Item></Link>
+            <Link href="/Contact"><Menu.Item>Contact</Menu.Item></Link>
         </Menu>
     );
 }
